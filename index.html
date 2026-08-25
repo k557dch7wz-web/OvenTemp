@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#191714" />
+    <meta
+      name="description"
+      content="A calibrated temperature converter for an oven that runs cool."
+    />
+    <title>TrueTemp — Oven Dial Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="TrueTemp home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>TRUE<span>TEMP</span></span>
+      </a>
+      <p class="status"><span></span> Calibrated for your oven</p>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">YOUR OVEN, TRANSLATED</p>
+        <h1>Cook at the temperature<br /><em>you actually want.</em></h1>
+        <p class="intro">
+          Your oven runs cool. Choose the true cooking temperature and we’ll tell you
+          exactly where to set the dial.
+        </p>
+      </section>
+
+      <section class="converter-card" aria-labelledby="converter-title">
+        <h2 id="converter-title" class="sr-only">Oven temperature converter</h2>
+        <div class="mode-switch" role="tablist" aria-label="Input method">
+          <button id="dial-tab" class="mode-button active" role="tab" aria-selected="true" aria-controls="dial-panel">
+            <span class="dial-icon" aria-hidden="true"></span> Turn the dial
+          </button>
+          <button id="type-tab" class="mode-button" role="tab" aria-selected="false" aria-controls="type-panel">
+            <span class="type-icon" aria-hidden="true">123</span> Type a temp
+          </button>
+        </div>
+
+        <div class="converter-body">
+          <div class="input-side">
+            <div id="dial-panel" class="input-panel active" role="tabpanel" aria-labelledby="dial-tab">
+              <p class="panel-label">I WANT TO COOK AT</p>
+              <div class="knob-wrap">
+                <div class="tick-ring" aria-hidden="true"></div>
+                <div
+                  id="knob"
+                  class="knob"
+                  role="slider"
+                  tabindex="0"
+                  aria-label="Desired cooking temperature"
+                  aria-valuemin="200"
+                  aria-valuemax="450"
+                  aria-valuenow="350"
+                  aria-valuetext="350 degrees Fahrenheit"
+                >
+                  <div class="knob-face">
+                    <span class="knob-notch" aria-hidden="true"></span>
+                    <span class="knob-value"><strong id="knob-value">350</strong><sup>°F</sup></span>
+                    <small>TRUE TEMP</small>
+                  </div>
+                </div>
+                <span class="range-label range-min">200°</span>
+                <span class="range-label range-max">450°</span>
+              </div>
+              <p class="knob-help">Drag the dial, or use arrow keys</p>
+            </div>
+
+            <div id="type-panel" class="input-panel" role="tabpanel" aria-labelledby="type-tab" hidden>
+              <p class="panel-label">I WANT TO COOK AT</p>
+              <label class="temp-entry">
+                <span class="sr-only">Desired cooking temperature</span>
+                <input id="temp-input" type="number" inputmode="numeric" min="200" max="450" step="1" value="350" />
+                <span>°F</span>
+              </label>
+              <div class="quick-temps" aria-label="Quick temperatures">
+                <button data-temp="250">250°</button>
+                <button data-temp="350">350°</button>
+                <button data-temp="375">375°</button>
+                <button data-temp="400">400°</button>
+              </div>
+              <p class="entry-help">Enter any temperature from 200°F to 450°F</p>
+            </div>
+          </div>
+
+          <div class="result-side" aria-live="polite">
+            <p class="panel-label">SET YOUR OVEN TO</p>
+            <div class="result-temp"><strong id="result-value">425</strong><sup>°F</sup></div>
+            <div class="result-rule"></div>
+            <p class="result-copy">
+              Set the dial to <strong id="result-inline">425°F</strong> to get a true
+              <strong id="desired-inline">350°F</strong> inside.
+            </p>
+            <p id="estimate-note" class="estimate-note" hidden>
+              <span aria-hidden="true">!</span> Outside your measured range — this is an estimate.
+            </p>
+            <div id="exact-badge" class="exact-badge">
+              <span aria-hidden="true">✓</span> Exact calibration point
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="calibration" aria-labelledby="calibration-title">
+        <div>
+          <p class="eyebrow">THE NUMBERS BEHIND IT</p>
+          <h2 id="calibration-title">Your calibration</h2>
+          <p>Measured settings are used exactly. Temperatures between them are smoothly interpolated.</p>
+        </div>
+        <div class="calibration-list">
+          <div><span>TRUE</span><strong>250°</strong><i>→</i><span>SET TO</span><strong>300°</strong></div>
+          <div><span>TRUE</span><strong>350°</strong><i>→</i><span>SET TO</span><strong>425°</strong></div>
+          <div><span>TRUE</span><strong>375°</strong><i>→</i><span>SET TO</span><strong>430°</strong></div>
+          <div><span>TRUE</span><strong>400°</strong><i>→</i><span>SET TO</span><strong>470°</strong></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>TRUE<span>TEMP</span></p>
+      <p>Built around your oven’s quirks.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
